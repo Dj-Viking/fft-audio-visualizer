@@ -1,19 +1,21 @@
 let mic;
 let fft;
 let vol;
+let bandW;
+
 const micOff = document.querySelector('#btn-off');
 const micOn = document.querySelector('#btn-on');
 
 let audioHistory = [];
 
 function setup() {
-  createCanvas(400,400);
+  createCanvas(600,600);
   angleMode(DEGREES);
   mic = new p5.AudioIn();
   mic.start();
   userStartAudio();
   getAudioContext().resume();
-  fft = new p5.FFT();
+  fft = new p5.FFT(.9, 1024);
   fft.setInput(mic);
 }
 
@@ -21,7 +23,13 @@ function draw() {
   background(0);
   vol = mic.getLevel();
   let spectrum = fft.analyze();
-  console.log(spectrum);
+  stroke(255, 0, 200);
+  for (let i = 0; i < spectrum.length; i++) {
+    let amp = spectrum[i];
+    let y = map(amp, 0, 512, height, 0);
+    line(i, height, i, y);
+  }
+  // console.log(spectrum);
 
 
 
@@ -29,8 +37,8 @@ function draw() {
 
 
   stroke(0, 255, 0);
-  fill(0, 255, 0);
-  ellipse(200, 200, vol*400, vol*800);
+  fill(0, 255, 0, .5);
+  ellipse(300, 300, vol*400, vol*800);
   audioHistory.push(vol);
   //console.log(audioHistory);
   //console.log(vol);
