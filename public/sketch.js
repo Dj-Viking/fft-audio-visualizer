@@ -11,15 +11,23 @@ function setup() {
   angleMode(DEGREES);
   mic = new p5.AudioIn();
   mic.start();
-  fft = new p5.FFT();
   userStartAudio();
+  getAudioContext().resume();
+  fft = new p5.FFT();
+  fft.setInput(mic);
 }
 
 function draw() {
   background(0);
   vol = mic.getLevel();
   let spectrum = fft.analyze();
-  //console.log(spectrum);
+  console.log(spectrum);
+
+
+
+
+
+
   stroke(0, 255, 0);
   fill(0, 255, 0);
   ellipse(200, 200, vol*400, vol*800);
