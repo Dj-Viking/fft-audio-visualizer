@@ -8,6 +8,7 @@ let audioHistory = [];
 
 function setup() {
   createCanvas(400,400);
+  angleMode(DEGREES);
   mic = new p5.AudioIn();
   mic.start();
   fft = new p5.FFT();
@@ -26,14 +27,19 @@ function draw() {
   //console.log(audioHistory);
   //console.log(vol);
   stroke(0, 255, 0);
+  translate(width /2, height /2);
+  noFill();
   beginShape();
-  for (let i = 0; i < audioHistory.length; i++) {
-    let y = map(audioHistory[i], 0, 1, height/2, 0);
-    vertex(i, y);
+  for (let i = 0; i < 360; i++) {
+    let r = map(audioHistory[i], 0, 1, 10, 400);
+    let x = r * cos(i);
+    let y = r * sin(i);
+    //let y = map(audioHistory[i], 0, 1, height/2, 0);
+    vertex(x, y);
   }
   endShape();
-
-  if(audioHistory.length > width) {
+  
+  if(audioHistory.length > 360) {
     audioHistory.splice(0, 1);
   }
 }
