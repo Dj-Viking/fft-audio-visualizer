@@ -15,6 +15,7 @@ An audio visualizer built into the browser canvas. Takes audio input from extern
 
 ## Table of Contents
 * [Usage](#Usage)
+* [Deployed](#Deployed)
 * [Credits](#Credits)
 * [License](#License)
 * [Questions](#Questions)
@@ -40,6 +41,11 @@ An audio visualizer built into the browser canvas. Takes audio input from extern
 ---
 * ![Image of Application Page](./directions/setup-step-3.png)
 ---
+
+## Deployed
+
+* 👇Click the badge to see the deployed web application!
+* [![p5: JS](https://img.shields.io/badge/click_me-FF33E9.svg)](https://dj-viking.github.io/fft-audio-visualizer/)
 
 ## Credits
 
